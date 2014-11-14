@@ -12,8 +12,8 @@ To find out the relation between 2 pairs with given corpus
 #####Files
 * parse_xml.py: Parse the xml format file to json format
 * statistics.py: Count the number of verbs and noun pairs
-  Usage: python statistic.py [data path] [file name] [output dir]
-  File names are seperated by ',' for example: 01,02,03,04                                    #
+  - Usage: python statistic.py [data path] [file name] [output dir]
+  - File names are seperated by ',' for example: 01,02,03,04                                    #
 * refine_data.py: find out the verb or noun pair with small number
 * delete_small.py: delete the verb and noun pair from the small list
 * generate.py: generate the data for LDA
