@@ -119,15 +119,24 @@ def write_data_format(output_dir):
         for pair in global_verb_pair_list[v]:
             fp_out.write((v + ',' + pair[0] + ',' + pair[1] + '\n').encode('utf-8'))
 
-
+import argparse
 def main():
     #data_path='../Data/udn/2014_people/pos'
     #file_name_list=['01','02','03','04']
 
-    data_path = sys.argv[1]
-    file_name = sys.argv[2]
-    output_dir = sys.argv[3]
-    
+    #data_path = sys.argv[1]
+    #file_name = sys.argv[2]
+    #output_dir = sys.argv[3]
+    parser = argparse.ArgumentParser(description='Process the given data')
+    parser.add_argument('path', type=str, help='path of input data')
+    parser.add_argument('files', type=str, help='file names seperated by \',\'')
+    parser.add_argument('out_dir', type=str, help='output directory')
+    args = parser.parse_args()
+
+    data_path = args.path
+    file_name = args.files
+    output_dir = args.out_dir
+
     file_name_list = file_name.split(',')
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
