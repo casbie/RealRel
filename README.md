@@ -1,15 +1,15 @@
 RealRel
 =======
 
-##### Proposed Topic
+### Proposed Topic
 To find out the relation between 2 pairs with given corpus
 
-##### Proposed Method
+### Proposed Method
 1. Cluster the noun pairs by LDA as groups, assuming each group present one relation
 2. Select the seed from the groups as training data
 3. With the training data, learn the model to decide the relation between each pair
 
-##### Files
+### Files
 #### Preprocessing
 * parse_xml.py: Parse the xml format file to json format
 * statistics.py: Count the number of verbs and noun pairs
@@ -20,6 +20,6 @@ To find out the relation between 2 pairs with given corpus
 * delete_small.py: delete the verb and noun pair from the small list
 * generate.py: generate the data for LDA
 
-##### Author
+### Author
 I am a master student from National Taiwan University.
 
