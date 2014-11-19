@@ -4,9 +4,10 @@
 # * This file is used for analyze the dataset.                   #
 #   1. read the pos-tagged data from file                        #
 #   2. extract the noun_list and verb_list                       #
-#    3. count                                                    #
+#   3. count                                                     #
 #       - pair histogram                                         #
 #       - verb histogram                                         #
+#       - noun histogram
 # * Input command:                                               #
 #                                                                #
 #    python statistic.py [data path] [file name] [output dir]    #
@@ -16,7 +17,7 @@
 #                                                                #
 # * Author: Yu-Ju Chen                                           #
 # * Date: 2014-10-18 created                                     #
-#          2014-11-12 modified                                   #
+#         2014-11-12 modified                                    #
 ##################################################################
 
 import json
@@ -43,7 +44,7 @@ def read_input(data_path, file_name_list):
                 for word in sentence['postag']:
                     text = word[0]
                     flag = word[1]
-                    
+
                     if flag[0:2] == 'Na' or flag[0:2] == 'Nb' or flag[0:2] == 'Nc':
                         noun_list.append(word[0])
                     elif flag[0] == 'V':
@@ -66,6 +67,9 @@ def delete_same(noun_list):
 
 global_pair_list = []
 global_pair_count = {}
+global_noun_list = []
+global_noun_count = {}
+
 def stat_for_pair(noun_list):
     noun_pair_list = []
     for i in range(0, len(noun_list)-1):
@@ -77,6 +81,13 @@ def stat_for_pair(noun_list):
                 global_pair_count[pair] = 1
             else:
                 global_pair_count[pair] = global_pair_count[pair] + 1
+
+        noun = noun_list[i]
+        if noun not in global_noun_list:
+            global_noun_list.append(noun)
+            global_noun_count[noun] = 1
+        else:
+            global_noun_count[noun] = global_noun_count[noun] + 1
     return noun_pair_list
 
 
@@ -94,7 +105,7 @@ def stat_for_verb(verb_list, noun_pair_list):
             global_verb_pair_list[v] = []
         else:
             global_verb_count[v] = global_verb_count[v] + num_noun_pair
-        
+
         for pair in noun_pair_list:
             global_verb_pair_list[v].append(pair)
 
@@ -111,13 +122,20 @@ def write_verb_stat(output_dir):
         fp_out.write((v + ',' + str(global_verb_count[v]) + '\n').encode('utf-8'))
 
 
+def write_noun_stat(output_dir):
+    fp_out = io.open(output_dir + '/' + 'noun_stat', 'wb')
+    for n in global_noun_list:
+        fp_out.write((n + ',' + str(global_noun_count[n]) + '\n').encode('utf-8'))
+
+
 def write_data_format(output_dir):
-    fp_out = io.open(output_dir + '/' + 'data_format', 'wb')
+    fp_out = io.open(output_dir+'/'+'data_format', 'wb')
     for v in global_verb_pair_list:
         if len(global_verb_pair_list) == 0:
             continue
         for pair in global_verb_pair_list[v]:
             fp_out.write((v + ',' + pair[0] + ',' + pair[1] + '\n').encode('utf-8'))
+
 
 import argparse
 def main():
@@ -145,6 +163,7 @@ def main():
     write_pair_stat(output_dir)
     write_verb_stat(output_dir)
     write_data_format(output_dir)
+    write_noun_stat(output_dir)
 
 
 if __name__ == '__main__':
