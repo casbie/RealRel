@@ -44,6 +44,10 @@ To find out the relation between 2 pairs with given corpus
   - Usage: python sort_dat.py [input file name] [outout file name] [index]
   - The input file and output file must be csv format, and the index means the column to be sorted.
 
+#### Data
+* Categories of data: 
+  - all_category = ['人事', '心理', '訊息', '兒童文學', '財政', '災禍', '內政', '經濟', '民族文化', '政治現象', '影藝', '犯罪', '環保', '食物', '社會現象', '宗教', '其他文學創作', '美術', '戲劇', '資訊', '教育', '語文', '軍事', '歷史', '工程', '體育', '行銷', '交通運輸', '國家政策', '福利', '人物', '物理', '醫學', '商管', '俠義文學', '音樂', '休閒', '消費', '生物', '家庭', '建築', '傳播', '衛生保健', '公益', '天文', '農漁牧業', '司法', '政治學', '技藝', '批評與鑑賞', '統計調查', '舞蹈', '思想', '地理', '言情文學', '雕塑', '國際關係', '攝影', '文物', '藝術總論', '政黨', '電影', '衣飾', '鄉土文學', '文學通論', '考古', '社會學', '大氣科學', '數學', '礦冶', '化學']
+
 ### Author
 I am a master student from National Taiwan University.
 
